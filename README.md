@@ -1,161 +1,114 @@
+# Multimodal AI Agent
 
-# Phidata Multimodal AI Agent
+A **Streamlit-based application** that integrates various functionalities including:
+- Product ingredient analysis for health insights.
+- Financial data analysis for stock prices and company fundamentals.
+- Video insights analysis from uploaded videos.
+- YouTube video analysis using transcripts.
 
-## Overview
-
-Phidata Multimodal AI Agent is a sophisticated Streamlit application powered by Gemini 2.0 Flash Exp. It offers three distinct functionalities:
-
-1. **Financial Data Analysis**: Allows users to get insights into stock prices, company fundamentals, and financial news.
-2. **Video Summarization**: Summarizes uploaded video content and answers user queries based on the video context.
-3. **YouTube Video Insights**: Extracts and analyzes transcripts from YouTube videos, providing detailed insights and answers to user queries.
-
-This app leverages advanced AI models and integrates multimodal inputs, providing a seamless experience across different use cases.
-
----
+This tool leverages **Gemini 2.0 Flash Exp** for intelligent analysis, combining AI agents with task-specific tools like Tavily, DuckDuckGo, and YFinance.
 
 ## Features
 
-- **Financial Data Analysis**:
-  - Get real-time stock prices and company news.
-  - Analyze company fundamentals, including financial ratios and performance metrics.
-  - Query-based financial insights with web search integration.
+### 1. Product Ingredient Analysis
+- Upload an image of a product's ingredient list.
+- Analyze for:
+  - Nutritional value (rated on a scale of 1-5).
+  - Presence of artificial additives and preservatives.
+  - Dietary restrictions (e.g., vegan, halal, kosher).
+  - Health implications and concerns.
+  - Evidence-based recommendations for healthier alternatives.
 
-- **Video Summarization**:
-  - Upload video files (MP4, MOV, AVI formats).
-  - AI summarization and detailed analysis based on the video's content.
-  - Analyze video content and gather additional insights via AI.
+### 2. Financial Data Analysis
+- Get insights on:
+  - Stock prices.
+  - Company fundamentals and financial news.
+  - Analyst recommendations.
+- Information is presented in a clear and concise tabular format.
 
-- **YouTube Video Insights**:
-  - Provide a YouTube video link for transcript extraction and analysis.
-  - Use the video's transcript to answer queries and derive insights from the content.
+### 3. Video Insights Analysis
+- Upload video files (e.g., `.mp4`, `.mov`, `.avi`).
+- Extract meaningful insights and contextual analysis.
+- Supports supplementary web research for enhanced results.
 
----
+### 4. YouTube Video Analysis
+- Enter a YouTube video link.
+- Fetch and analyze video transcripts for content and context.
+- Address user queries based on video content.
 
 ## Requirements
 
-To run this app, you need to set up a few dependencies. Follow the steps below to get started.
+- Python version: **>= 3.9**
+- Supported OS: Windows, macOS, Linux
 
-### 1. Install the Required Libraries
+## Installation
 
-You can install the necessary dependencies by running the following command:
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/PriyanshuDey23/Phidata-Multimodal-AI-Agent.git
+   cd multimodal-ai-agent
+   ```
 
-```bash
-pip install -r requirements.txt
-```
+2. Create and activate a virtual environment:
+   ```bash
+   python -m venv venv
+   source venv/bin/activate # On Windows: venv\Scripts\activate
+   ```
 
-The `requirements.txt` file should include the following dependencies:
+3. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-```txt
-streamlit
-phi
-google-generativeai
-youtube-transcript-api
-yfinance
-python-dotenv
-```
+4. Set up environment variables:
+   - Create a `.env` file in the project directory.
+   - Add your API keys:
+     ```env
+     GOOGLE_API_KEY=your_google_api_key
+     TAVILY_API_KEY=your_tavily_api_key
+     ```
 
-### 2. Set Up Environment Variables
+## Usage
 
-Create a `.env` file in the root directory of your project and add your API keys. The `.env` file should look like this:
-
-```env
-GOOGLE_API_KEY=your_google_api_key
-```
-
-You can obtain a Google API key from [Google Cloud Console](https://aistudio.google.com/apikey).
-
-### 3. Running the App
-
-Once you have the dependencies installed and the `.env` file set up, you can run the app locally using the following command:
-
+Run the Streamlit app:
 ```bash
 streamlit run app.py
 ```
 
-This will start a local server and open the app in your web browser. You can now interact with the multimodal AI agent.
+### Navigating the Application
+1. Select an option from the sidebar (e.g., Financial Data, Video Insights, etc.).
+2. Follow the on-screen instructions to upload files, input links, or enter queries.
+3. View results directly within the application.
 
----
+## Key Technologies
 
-## Usage
-
-### Financial Data Analysis
-
-1. Select "Financial Data" from the sidebar.
-2. Enter your query about stock prices, company fundamentals, or financial news.
-3. Click the **🔍 Get Answer** button to receive the analysis from the AI agent.
-
-### Video Summarization
-
-1. Select "Video Summarizer" from the sidebar.
-2. Upload your video file (MP4, MOV, or AVI format).
-3. Enter your query regarding the video content and click the **🔍 Analyze Video** button for the AI to analyze and summarize the content.
-
-### YouTube Video Insights
-
-1. Select "YouTube Video Insights" from the sidebar.
-2. Provide a valid YouTube video link.
-3. Enter your query regarding the video and click the **🔍 Analyze Video** button to get the analysis from the transcript of the video.
-
----
-
-## Directory Structure
-
-```
-/Phidata-Multimodal-AI-Agent
-├── app.py                 # Main Streamlit application script
-├── requirements.txt       # List of required Python packages
-├── .env                   # Environment variables (API keys)
-├── /assets                # Folder for images, videos, and other media (optional)
-└── README.md              # This readme file
-```
-
----
-
-## Development
-
-Feel free to fork this project and contribute. To set up a development environment:
-
-1. Clone the repository:
-
-    ```bash
-    git clone https://github.com/PriyanshuDey23/Phidata-Multimodal-AI-Agent.git
-    ```
-
-2. Create a virtual environment:
-
-    ```bash
-    python -m venv venv
-    ```
-
-3. Activate the virtual environment:
-
-    - **Windows**:
-
-        ```bash
-        venv\Scriptsctivate
-        ```
-
-    - **Mac/Linux**:
-
-        ```bash
-        source venv/bin/activate
-        ```
-
-4. Install the dependencies:
-
-    ```bash
-    pip install -r requirements.txt
-    ```
-
-5. Run the application:
-
-    ```bash
-    streamlit run app.py
-    ```
-
----
+- **Streamlit**: For building an interactive user interface.
+- **Phi Agents**: Task-specific AI agents with Gemini 2.0.
+- **YFinanceTools**: For real-time financial data.
+- **DuckDuckGo API**: For web-based searches.
+- **YouTube Transcript API**: To retrieve video transcripts.
+- **Tavily Tools**: For ingredient list analysis.
 
 ## License
 
-This project is licensed under the MIT License.
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+## Contribution
+
+We welcome contributions! Follow these steps:
+1. Fork the repository.
+2. Create a feature branch: `git checkout -b feature-name`.
+3. Commit changes: `git commit -m "Add new feature"`.
+4. Push to the branch: `git push origin feature-name`.
+5. Create a pull request.
+
+## Acknowledgments
+
+- **Phi AI** for powerful multimodal AI capabilities.
+- **Streamlit** for an easy-to-use application framework.
+- **Contributors** for their dedication and effort.
+
+---
+
+For any issues or feature requests, please open an issue on [GitHub](https://github.com/your-repo/multimodal-ai-agent/issues).
 
