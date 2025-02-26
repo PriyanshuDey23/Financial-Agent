@@ -1,12 +1,16 @@
 # Multimodal AI Agent
 
+![](1.png)
+![](2.png)
+![](3.png)
+
 A **Streamlit-based application** that integrates various functionalities including:
 - Product ingredient analysis for health insights.
 - Financial data analysis for stock prices and company fundamentals.
 - Video insights analysis from uploaded videos.
 - YouTube video analysis using transcripts.
 
-This tool leverages **Gemini 2.0 Flash Exp** for intelligent analysis, combining AI agents with task-specific tools like Tavily, DuckDuckGo, and YFinance.
+This tool leverages **Gemini 2.0 Flash** for intelligent analysis, combining AI agents with task-specific tools like Tavily, DuckDuckGo, and YFinance.
 
 ## Features
 

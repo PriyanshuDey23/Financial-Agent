@@ -36,7 +36,7 @@ st.title("Phidata Multimodal AI Agent 📈🎥💹")
 def initialize_finance_agent():
     return Agent(
         name="Finance AI Agent",
-        model=Gemini(id="gemini-2.0-flash-exp"),
+        model=Gemini(id="gemini-2.0-flash"),
         tools=[YFinanceTools(stock_price=True, analyst_recommendations=True, stock_fundamentals=True, company_news=True),
                DuckDuckGo()],
         instructions=["Use DuckDuckGo for web searches.", "Provide financial data in tabular format.", "Always include sources for any information provided."],
@@ -44,22 +44,13 @@ def initialize_finance_agent():
         markdown=True,
     )
 
-# Initialize video summarizer agent
-@st.cache_resource
-def initialize_video_agent():
-    return Agent(
-        name="Video Insights",
-        model=Gemini(id="gemini-2.0-flash-exp"),
-        tools=[DuckDuckGo()],
-        markdown=True,
-    )
 
 # Initialize YouTube video agent
 @st.cache_resource
 def initialize_youtube_agent():
     return Agent(
         name="YouTube Video Insights",
-        model=Gemini(id="gemini-2.0-flash-exp"),
+        model=Gemini(id="gemini-2.0-flash"),
         tools=[DuckDuckGo()],
         markdown=True,
     )
@@ -88,7 +79,7 @@ def initialize_product_agent():
 
     return Agent(
         name="Product Ingredient Agent",
-        model=Gemini(id="gemini-2.0-flash-exp"),
+        model=Gemini(id="gemini-2.0-flash"),
         system_prompt=SYSTEM_PROMPT,
         instructions=INSTRUCTIONS,
         tools=[TavilyTools(api_key=TAVILY_API_KEY)],
@@ -97,7 +88,6 @@ def initialize_product_agent():
 
 # Instantiate the agents
 finance_agent = initialize_finance_agent()
-video_agent = initialize_video_agent()
 youtube_agent = initialize_youtube_agent()
 product_agent = initialize_product_agent()
 
@@ -130,7 +120,7 @@ def save_uploaded_file(uploaded_file):
         return f.name
 
 # Option selection
-option = st.sidebar.radio("Choose an Analysis", ["Finance AI Agent", "Video Insights", "YouTube Video Insights", "Product Ingredient Analysis"])
+option = st.sidebar.radio("Choose an Analysis", ["Finance AI Agent",  "YouTube Video Insights", "Product Ingredient Analysis"])
 
 # Finance Data Analysis
 if option == "Finance AI Agent":
@@ -152,29 +142,7 @@ if option == "Finance AI Agent":
             except Exception as e:
                 st.error(f"An error occurred while processing your question: {e}")
 
-# Video Summarizer
-elif option == "Video Insights":
-    st.subheader("Video Insights 🎥")
-    video_file = st.file_uploader("Upload a video file", type=['mp4', 'mov', 'avi'])
-    if video_file:
-        with tempfile.NamedTemporaryFile(delete=False, suffix='.mp4') as temp_video:
-            temp_video.write(video_file.read())
-            video_path = temp_video.name
-        st.video(video_path, format="video/mp4", start_time=0)
-        user_query = st.text_area("What insights are you seeking from the video?")
-        if st.button("🔍 Analyze Video"):
-            if not user_query:
-                st.warning("Please enter a question or insight to analyze the video.")
-            else:
-                try:
-                    with st.spinner("Processing video and gathering insights..."):
-                        response = video_agent.run(user_query, videos=[video_path])
-                    st.subheader("Analysis Result")
-                    st.markdown(response.content)
-                except Exception as error:
-                    st.error(f"An error occurred during analysis: {error}")
-                finally:
-                    Path(video_path).unlink(missing_ok=True)
+
 
 # YouTube Video Insights
 elif option == "YouTube Video Insights":
